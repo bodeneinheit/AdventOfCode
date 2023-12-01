@@ -27,33 +27,22 @@ const wordsMap = {
     "seven": "7",
     "eight": "8",
     "nine": "9",
+    "twone": "21",
+    "oneight": "18",
+    "threeight": "38",
+    "fiveight": "58",
+    "nineight": "98",
+    "eightwo": "82"
 };
 
 let inputArray = data.split("\n");
 let counter = 0;
-const words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
 for (let entry of inputArray) {
     if (entry) {
-        console.log(entry);
-        entry = entry.replace("twone", "twoone");
-        entry = entry.replace("oneight", "oneeight");
-        entry = entry.replace("threeight", "threeeight");
-        entry = entry.replace("fiveight", "fiveeight");
-        entry = entry.replace("nineight", "nineeight");
-        entry = entry.replace("eightwo", "eighttwo");
-        entry = entry.replace(/(?:zero|one|two|three|four|five|six|seven|eight|nine)/g, match => wordsMap[match]);
+        entry = entry.replace(/(?:twone|oneight|threeight|fiveight|nineight|eightwo|zero|one|two|three|four|five|six|seven|eight|nine|)/g, match => wordsMap[match]);
         entry = entry.match(/\d/gm);
-
-        console.log(entry);
-        if (entry.length > 1) {
-            counter += Number(entry[0] + entry[entry.length - 1]);
-            console.log(Number(entry[0] + entry[entry.length - 1]))
-        } else {
-            counter += Number(entry + entry);
-            console.log(Number(entry + entry));
-        }
-        console.log(counter);
+        counter += Number((entry.length > 1) ? entry[0] + entry[entry.length - 1] : entry + entry);
     }
 }
 console.log(counter);
