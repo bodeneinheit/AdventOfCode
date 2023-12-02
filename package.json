@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start1": "node ./Day1/index.js"
+    "start1": "node ./Day1/index1.js",
+    "start2": "node ./Day2/index2.js"
   },
   "author": "",
   "license": "ISC",

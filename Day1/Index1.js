@@ -14,7 +14,6 @@ async function fetchData() {
     response = await response.text();
     return response;
 }
-
 const data = await fetchData();
 
 const wordsMap = {
