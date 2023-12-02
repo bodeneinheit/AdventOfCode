@@ -16,6 +16,10 @@ async function fetchData() {
 }
 const data = await fetchData();
 
+// Part 1
+
+
+// Part 2
 const wordsMap = {
     "one": "1",
     "two": "2",

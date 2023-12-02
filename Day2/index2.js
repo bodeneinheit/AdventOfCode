@@ -3,7 +3,6 @@ import {configDotenv} from "dotenv";
 
 configDotenv();
 
-
 async function fetchData() {
     let response = await fetch("https://adventofcode.com/2023/day/2/input", {
         "headers": {
@@ -28,6 +27,7 @@ const startCubes = {
 
 let games = data.replaceAll(" ", "").split("\n");
 let cleanedGames = {};
+let counter = 0;
 
 for (let [index, game] of games.entries()) {
     let pull = game.split(":")[1]?.split(";");
@@ -38,10 +38,26 @@ for (let [index, game] of games.entries()) {
         let greenMatch = boxes.match(/(\d*)green/);
         let blueMatch = boxes.match(/(\d*)blue/);
         cleanedGames[index + 1].push({
-            "red": (redMatch) ? redMatch[1] : 0,
-            "green": (greenMatch) ? greenMatch[1] : 0,
-            "blue": (blueMatch) ? blueMatch[1] : 0
+            "red": (redMatch) ? Number(redMatch[1]) : 0,
+            "green": (greenMatch) ? Number(greenMatch[1]) : 0,
+            "blue": (blueMatch) ? Number(blueMatch[1]) : 0
         });
     };
 }
-console.log(cleanedGames);
+
+// Part 1
+for (let [key, value] of Object.entries(cleanedGames)) {
+    let validDraw = true;
+    for (let draw of value) {
+        if (draw.red > startCubes.red || draw.green > startCubes.green || draw.blue > startCubes.blue) {
+            validDraw = false;
+            break;
+        }
+    }
+    if(validDraw) {
+        counter += Number(key);
+    }
+}
+console.log(counter);
+
+// Part 2
