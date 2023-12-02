@@ -7,9 +7,7 @@ async function fetchData() {
     let response = await fetch("https://adventofcode.com/2023/day/2/input", {
         "headers": {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-            "cookie": process.env.cookie,
-            "Referer": "https://adventofcode.com/2023/day/2",
-            "Referrer-Policy": "strict-origin-when-cross-origin"
+            "cookie": process.env.cookie
         },
         "body": null,
         "method": "GET"
@@ -61,3 +59,14 @@ for (let [key, value] of Object.entries(cleanedGames)) {
 console.log(counter);
 
 // Part 2
+let counter2 = 0;
+for (let [key, value] of Object.entries(cleanedGames)) {
+    let maxDrawRed , maxDrawGreen , maxDrawBlue= 0;
+    for (let draw of value) {
+        maxDrawRed = Math.max(maxDrawRed, draw.red);
+        maxDrawGreen = Math.max(maxDrawGreen, draw.green);
+        maxDrawBlue = Math.max(maxDrawBlue, draw.blue);
+    }
+    counter2 += maxDrawRed * maxDrawGreen * maxDrawBlue;
+}
+console.log(counter2);

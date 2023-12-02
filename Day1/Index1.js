@@ -1,12 +1,12 @@
 import fetch from "node-fetch";
+import {configDotenv} from "dotenv";
 
+configDotenv();
 async function fetchData() {
     let response = await fetch("https://adventofcode.com/2023/day/1/input", {
         "headers": {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-            "cookie": process.env.cookie,
-            "Referer": "https://adventofcode.com/2023/day/1",
-            "Referrer-Policy": "strict-origin-when-cross-origin"
+            "cookie": process.env.cookie
         },
         "body": null,
         "method": "GET"
