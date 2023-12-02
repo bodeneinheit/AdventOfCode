@@ -27,7 +27,21 @@ const startCubes = {
 }
 
 let games = data.replaceAll(" ", "").split("\n");
+let cleanedGames = {};
 
 for (let [index, game] of games.entries()) {
-    console.log(game.split(":")[1]?.split(";"));
+    let pull = game.split(":")[1]?.split(";");
+    if (!pull) continue;
+    cleanedGames[index + 1] = [];
+    for (const boxes of pull) {
+        let redMatch = boxes.match(/(\d*)red/);
+        let greenMatch = boxes.match(/(\d*)green/);
+        let blueMatch = boxes.match(/(\d*)blue/);
+        cleanedGames[index + 1].push({
+            "red": (redMatch) ? redMatch[1] : 0,
+            "green": (greenMatch) ? greenMatch[1] : 0,
+            "blue": (blueMatch) ? blueMatch[1] : 0
+        });
+    };
 }
+console.log(cleanedGames);
