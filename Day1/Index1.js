@@ -17,7 +17,12 @@ async function fetchData() {
 const data = await fetchData();
 
 // Part 1
-
+let counter = 0;
+let cleanedData = data.replace(/[^\d\n]/g, '').split('\n');
+for (let line of cleanedData) {
+    counter += Number(line.charAt(0) + ((line.length > 1) ? line.charAt(line.length-1) : line.charAt(0)));
+}
+console.log(counter);
 
 // Part 2
 const wordsMap = {
@@ -39,13 +44,13 @@ const wordsMap = {
 };
 
 let inputArray = data.split("\n");
-let counter = 0;
+let counter2 = 0;
 
 for (let entry of inputArray) {
     if (entry) {
         entry = entry.replace(/(?:twone|oneight|threeight|fiveight|nineight|eightwo|zero|one|two|three|four|five|six|seven|eight|nine|)/g, match => wordsMap[match]);
         entry = entry.match(/\d/gm);
-        counter += Number((entry.length > 1) ? entry[0] + entry[entry.length - 1] : entry + entry);
+        counter2 += Number((entry.length > 1) ? entry[0] + entry[entry.length - 1] : entry + entry);
     }
 }
-console.log(counter);
+console.log(counter2);
